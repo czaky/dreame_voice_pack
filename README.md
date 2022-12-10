@@ -9,13 +9,16 @@ Optimized for [valetudo](https://valetudo.cloud/) use.
 
 1. In Valetudo go to "Robot Settings" -> "Misc Settings"
 2. Enter the following information in the "Voice packs" section:
-    - URL: https://github.com/\<repo\>/\<character\>/voice.tar.gz
+    - URL: https://github.com/czaky/dreame_voice_pack/raw/master/\<character>/voice.tar.gz
+        - for example: https://github.com/czaky/dreame_voice_pack/raw/master/glados/voice.tar.gz  
     - Language Code: `CUSTOM` - or anything but language codes like `EN`
+        - for example: `GLADOS`
     - Hash: Lookup in the \<character\>/`HASH.txt` file
+        - for example: `bc10b417ace1dd1aaf4f3e1525aa3b73`
 3. Click "Set Voice Pack"
 
-4. Check if `.ogg` files have been copied to `/data/personalized_voice/CUSTOM` directory on the robot.
-5. If not, extract the tar.gz and copy the .ogg files using your favorite `scp` tool. 
+4. Check if the `*.ogg` files have been copied to `/data/personalized_voice/CUSTOM/` directory on the robot.
+5. If not, extract the `voice.tar.gz` and copy the `*.ogg` files using your favorite `scp` tool. 
 
 ## Generation
 
