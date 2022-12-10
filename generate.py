@@ -31,6 +31,7 @@ class MissingTextToSpeechServerError(Exception):
 class TTS():
     DEFAULT_TIMEOUT = 20
 
+    # Initialize providing the keys and the voice
     def __init__(self, pub, pk, voice, timeout = None):
         self.pub = pub
         self.pk = pk
@@ -38,6 +39,7 @@ class TTS():
         self.timeout = timeout if timeout else TTS.DEFAULT_TIMEOUT
         self.api = None
 
+    # Returns True if we could connect to Uberduck using the keys.
     def connect(self):
         try:
             self.api = UberDuck(self.pub, self.pk)
@@ -46,6 +48,9 @@ class TTS():
             print(f"Could not connect to UberDuck using {self.pub} and {self.pk}.")
         return False
 
+    # Transform the text into an output audio file.
+    #
+    # Return True on success.
     def transform(self, text, output, timeout):
         if len(text) == 0: 
             print(f"Text for {output} is empty.")
@@ -66,6 +71,7 @@ class TTS():
     def _on_timeout(self, signum, frame):
         raise TimeoutError('Uberduck.AI timed out.')
 
+    # Get audio but make sure we timeout if it taks too long.
     def _get_audio(self, text, file_path, timeout = None):
         if self.api is None and not self.connect(): return False
 
@@ -195,6 +201,7 @@ class Generator():
             os.replace(tmp, output)
             audio = output
         if self.normalize:
+            # Why do we have this lever?
             run(["ffmpeg-normalize", "-q",  "-o", str(output), "-f", str(audio)])
             audio = output
         return audio
@@ -244,7 +251,9 @@ class Generator():
             if not os.path.exists(tts_path):
                 # Transform text to speech
                 i = count % len(self.tts)
+                # TODO: Remove broken TTS stubs.
                 if not self.tts[i].transform(text, tts_path, timeout):
+                    # On failure, reschedule the transform with more timeout.
                     items.append((id, text, round((2 + timeout) * 1.5) ))
                     continue
             
@@ -253,7 +262,9 @@ class Generator():
             self.convert_to_ogg(processed, ogg_path)
             files.append(ogg_path.name)
 
+        # Generate the archive.
         run(["tar", "-c", "-f", "../voice.tar.gz", *files], cwd = ogg_dir)
+        # Generate the MD5 sum and store it in HASH.txt.
         with open(voice_dir / "HASH.txt", "w") as file:
             run(["md5sum", "--tag", "-b", "voice.tar.gz"], stdout= file, cwd = voice_dir)
 
@@ -265,10 +276,14 @@ if __name__ == '__main__':
     parser.add_argument('--timeout', default = TTS.DEFAULT_TIMEOUT, type=int, 
                         help='Timeout to be used with the TTS API.')
     parser.add_argument('--normalize', action='store_true', 
-                        help='Instructs ffmpeg to normalize the sound.')
+                        help='Normalize the sound. Not recommended.')
     args = parser.parse_args()
 
     # print(args)
-    g = Generator(args.voice, volume = args.volume, normalize = args.normalize, timeout = args.timeout)
+    g = Generator(
+            args.voice, 
+            volume = args.volume, 
+            normalize = args.normalize, 
+            timeout = args.timeout)
 
     g.process()
