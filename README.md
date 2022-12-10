@@ -1,15 +1,15 @@
 # Voice Packs for Dreame Vacuum Robots
 
-Uses voice generation by [uberduck](https://uberduck.ai/).
+Uses voice generation by [Uberduck.AI](https://uberduck.ai/).
 
 Works at least with `L10s Ultra`, `L10 Pro`, `Z10 Pro` and `W10`.
 Optimized for [valetudo](https://valetudo.cloud/) use.
 
 Current voice packs:
  
-  * [GLaDOS](./glados/voice.tar.gz)
-  * [Tiff](./kirby-tiff/voice.tar.gz)
-  * [Sweetie](./sweetie-belle/voice.tar.gz)
+  * [GLaDOS voice pack](./glados/voice.tar.gz) - [hash code](./glados/HASH.txt)
+  * [Tiff voice pack](./kirby-tiff/voice.tar.gz) - [hash code](./kirby-tiff/HASH.txt)
+  * [Sweetie voice pack](./sweetie-belle/voice.tar.gz) - [hash code](./sweetie-belle/HASH.txt)
 
 ## Installation
 
