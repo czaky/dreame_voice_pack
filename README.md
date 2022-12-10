@@ -5,11 +5,17 @@ Uses voice generation by [uberduck](https://uberduck.ai/).
 Works at least with `L10s Ultra`, `L10 Pro`, `Z10 Pro` and `W10`.
 Optimized for [valetudo](https://valetudo.cloud/) use.
 
+Current voice packs:
+ 
+  * [GLaDOS](./glados/voice.tar.gz)
+  * [Tiff](./kirby-tiff/voice.tar.gz)
+  * [Sweetie](./sweetie-belle/voice.tar.gz)
+
 ## Installation
 
 1. In Valetudo go to "Robot Settings" -> "Misc Settings"
 2. Enter the following information in the "Voice packs" section:
-    - URL: https://github.com/czaky/dreame_voice_pack/raw/master/\<character>/voice.tar.gz
+    - URL: https://github.com/czaky/dreame_voice_pack/raw/master/\<character\>/voice.tar.gz
         - for example: https://github.com/czaky/dreame_voice_pack/raw/master/glados/voice.tar.gz  
     - Language Code: `CUSTOM` - or anything but language codes like `EN`
         - for example: `GLADOS`
