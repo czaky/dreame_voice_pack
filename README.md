@@ -10,6 +10,7 @@ Current voice packs:
   * [GLaDOS voice pack](./glados/voice.tar.gz) - [hash code](./glados/HASH.txt)
   * [Tiff voice pack](./kirby-tiff/voice.tar.gz) - [hash code](./kirby-tiff/HASH.txt)
   * [Sweetie voice pack](./sweetie-belle/voice.tar.gz) - [hash code](./sweetie-belle/HASH.txt)
+  * [Fluttershy voice pack](./fluttershy/voice.tar.gz) - [hash code](./fluttershy/HASH.txt)
 
 ## Installation
 

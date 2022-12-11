@@ -225,9 +225,8 @@ class Generator():
             items.append((id, text, self.timeout))
 
         files = []
-        count = 0
+        tts_index = 0
         while len(items) > 0:
-            count += 1
             id, text, timeout = items.pop(0)
             ogg_path = ogg_dir / f"{id}.ogg"
             print(f"Processing {ogg_path}: \"{text}\"")
@@ -249,10 +248,10 @@ class Generator():
             tts_path = tts_dir / f"{md5}.wav"
             
             if not os.path.exists(tts_path):
+                tts_index += 1
+                tts_index %= len(self.tts)
                 # Transform text to speech
-                i = count % len(self.tts)
-                # TODO: Remove broken TTS stubs.
-                if not self.tts[i].transform(text, tts_path, timeout):
+                if not self.tts[tts_index].transform(text, tts_path, timeout):
                     # On failure, reschedule the transform with more timeout.
                     items.append((id, text, round((2 + timeout) * 1.5) ))
                     continue
