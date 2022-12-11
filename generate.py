@@ -262,7 +262,7 @@ class Generator():
             files.append(ogg_path.name)
 
         # Generate the archive.
-        run(["tar", "-c", "-f", "../voice.tar.gz", *files], cwd = ogg_dir)
+        run(["tar", "-c", "-z", "-f", "../voice.tar.gz", *files], cwd = ogg_dir)
         # Generate the MD5 sum and store it in HASH.txt.
         with open(voice_dir / "HASH.txt", "w") as file:
             run(["md5sum", "--tag", "-b", "voice.tar.gz"], stdout= file, cwd = voice_dir)
