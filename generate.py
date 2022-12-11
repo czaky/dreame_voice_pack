@@ -27,7 +27,7 @@ class TimeoutError(Exception):
 class MissingTextToSpeechServerError(Exception):
     pass
 
-# Interacts the the Uberduck.AI API.
+# Interacts with the Uberduck.AI API.
 class TTS():
     DEFAULT_TIMEOUT = 20
 
