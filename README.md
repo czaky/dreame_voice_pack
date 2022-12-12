@@ -37,10 +37,10 @@ Current voice packs:
 sudo apt install ffmpeg vorbis-tools
 ```
 
-2. Install uberduck python API and ffmpeg-normalize
+2. Install uberduck python API
 
 ```sh
-pip install uberduck ffmpeg-normalize
+pip install uberduck
 ```
 
 ### Invocation
@@ -51,7 +51,7 @@ pip install uberduck ffmpeg-normalize
 4. Run the script (replacing `kirby-tiff` with one of the voices)
 
 ```sh
-python generate.py --voice kirby-tiff [--volume 1.1] [--normalize]
+python generate.py --voice kirby-tiff [--volume 2] [--normalize]
 ```
 
 The default voice is `glados`.

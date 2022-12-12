@@ -193,16 +193,18 @@ class Generator():
     # Applies some transformations on the TTS audio like ffmpeg-normalize
     def process_audio(self, input, output):
         audio = input
+        tmp = f"{output}.tmp.{Path(output).suffix}"
         if self.volume:
-            tmp = f"{output}.tmp.{Path(output).suffix}"
             if os.path.exists(tmp): os.remove(tmp)
-            run(["ffmpeg", "-hide_banner", "-loglevel", "error", 
+            run(["ffmpeg", "-hide_banner", "-loglevel", "error",
                 "-i", str(audio), "-filter:a", f"volume={self.volume}", str(tmp)])
             os.replace(tmp, output)
             audio = output
         if self.normalize:
-            # Why do we have this lever?
-            run(["ffmpeg-normalize", "-q",  "-o", str(output), "-f", str(audio)])
+            if os.path.exists(tmp): os.remove(tmp)
+            run(["ffmpeg", "-hide_banner", "-loglevel", "error",
+                "-i", str(audio), "-filter:a", "dynaudnorm=m=20:g=15:s=10", str(tmp)])
+            os.replace(tmp, output)
             audio = output
         return audio
 
