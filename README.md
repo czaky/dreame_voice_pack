@@ -11,6 +11,7 @@ Current voice packs:
   * [Tiff voice pack](./kirby-tiff/voice.tar.gz) - [hash code](./kirby-tiff/HASH.txt)
   * [Sweetie voice pack](./sweetie-belle/voice.tar.gz) - [hash code](./sweetie-belle/HASH.txt)
   * [Fluttershy voice pack](./fluttershy/voice.tar.gz) - [hash code](./fluttershy/HASH.txt)
+  * [Slovak robot voice pack](./sk-robot/voice.tar.gz) - [hash code](./sk-robot/HASH.txt)
 
 ## Installation
 
